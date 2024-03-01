@@ -3,6 +3,7 @@
 void intializeGrid(char grid[3][3]);
 void displayGrid(char grid[3][3]);
 void playerMove(char grid[3][3]);
+int validMove(char grid[3][3]);
 
 int main() {
 	
@@ -12,11 +13,15 @@ int main() {
 	
 	intializeGrid(grid);
 
-	displayGrid(grid);
-	
+	while (gameOver = 1) {
+		displayGrid(grid);
 
+		playerMove(grid);
+
+	}
 }
 
+//function to intialize the grid
 void intializeGrid(char grid[3][3]) {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -37,10 +42,30 @@ void displayGrid(char grid[3][3]) {
 	printf("\n");
 }
 
+//Function for player move
 void playerMove(char grid[3][3]) {
 	int row, col;
 	printf("Please enter your move: ");
 	scanf_s("%d %d", &row, &col);
 	row--;
 	col--;
+	if (validMove(grid, row, col)) {
+		grid[row][col] = 'X';
+	}
+	else {
+		printf("Invalid move. Try again.\n");
+		playerMove(grid);
+	}
+}
+
+//function to check if the move is valid
+int validMove(char grid[3][3], int row, int col) {
+	if (row < 0 || row > 2 || col < 0 || col > 2) {
+		return 0;
+	}
+	if (grid[col][row] != ' ') {
+		return 0;
+	}
+
+	return 1;
 }
