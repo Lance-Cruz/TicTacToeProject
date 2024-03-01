@@ -39,7 +39,7 @@ int main() {
 			gameOver = 0;
 		}
 
-		if (checkdraw(grid)) {
+		else if (checkdraw(grid)) {
 			displayGrid(grid);
 				printf("Draw\n");
 				gameOver = 0;
@@ -63,7 +63,7 @@ void intializeGrid(char grid[3][3]) {
 	}
 }
 
-//LC Function to display the grid
+//LC  Function to display the grid
 void displayGrid(char grid[3][3]) {
 	printf("\n");
 	printf("  1   2   3\n");
@@ -178,5 +178,4 @@ int checkdraw(char grid[3][3]) {
 		}
 	}
 	return 1;
-
 }
