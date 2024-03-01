@@ -63,7 +63,7 @@ void intializeGrid(char grid[3][3]) {
 	}
 }
 
-//LC Function to display the grid
+//LC  Function to display the grid
 void displayGrid(char grid[3][3]) {
 	printf("\n");
 	printf("  1   2   3\n");
