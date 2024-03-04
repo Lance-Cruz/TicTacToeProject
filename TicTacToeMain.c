@@ -12,10 +12,14 @@ int checkdraw(char grid[3][3]);
 
 int main() {
 	
+	char name[50];
 	char grid[3][3];
 	int counter = 1;
 	int gameOver = 1;
 	
+	printf("Input your name here: ");
+	gets(name);
+
 	intializeGrid(grid);
 
 	while (gameOver == 1) {
@@ -31,7 +35,7 @@ int main() {
 		if (checkingWin(grid)) {
 			displayGrid(grid);
 			if (counter == 1) {
-				printf("Congratulations, YOU ARE THE WINNER!\n");
+				printf("Congratulations %s, YOU ARE THE WINNER!\n", name);
 			}
 			else {
 				printf("Computer wins!\n");
