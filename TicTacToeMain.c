@@ -16,46 +16,61 @@ int main() {
 	char grid[3][3];
 	int counter = 1;
 	int gameOver = 1;
+	int playAgain = 1;
 	
 	printf("Input your name here: ");
 	gets(name);
 
-	intializeGrid(grid);
+	do {
+		intializeGrid(grid);
+		counter = 1;
+		gameOver = 1;
 
-	while (gameOver == 1) {
-		displayGrid(grid);
-
-		if (counter == 1) {
-			playerMove(grid);
-		}
-		else {
-			compMove(grid);
-		}
-
-		if (checkingWin(grid)) {
+		while (gameOver == 1) {
 			displayGrid(grid);
+
 			if (counter == 1) {
-				printf("Congratulations %s, YOU ARE THE WINNER!\n", name);
+				playerMove(grid);
 			}
 			else {
-				printf("Computer wins!\n");
+				compMove(grid);
 			}
-			gameOver = 0;
-		}
 
-		else if (checkdraw(grid)) {
-			displayGrid(grid);
+			if (checkingWin(grid)) {
+				displayGrid(grid);
+				if (counter == 1) {
+					printf("Congratulations %s, YOU ARE THE WINNER!\n", name);
+				}
+				else {
+					printf("Computer wins!\n");
+				}
+				gameOver = 0;
+			}
+
+			else if (checkdraw(grid)) {
+				displayGrid(grid);
 				printf("Draw\n");
 				gameOver = 0;
+			}
+
+			if (counter == 1) {
+				counter = 2;
+			}
+			else {
+				counter = 1;
+			}
 		}
 
-		if (counter == 1) {
-			counter = 2;
-		}
-		else {
-			counter = 1;
-		}
+		printf("\nDo you want to play again (1 for yes, 0 for no): ");
+		scanf_s("%d", &playAgain);
 	}
+
+	while (playAgain == 1);
+
+	printf("\nThanks for Playing\n");
+
+	return 0;
+
 }
 
 //LC function to intialize the grid
