@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void intializeGrid(char grid[3][3]);
 void displayGrid(char grid[3][3]);
@@ -9,6 +10,7 @@ int validMove(char grid[3][3], int row, int col);
 void compMove(char grid[3][3]);
 int checkingWin(char grid[3][3]);
 int checkdraw(char grid[3][3]);
+void scoreBoard(int playerWin ,int compWin, char *name, int sizeOf);
 
 int main() {
 	
@@ -17,9 +19,14 @@ int main() {
 	int counter = 1;
 	int gameOver = 1;
 	int playAgain = 1;
+	int playerWin = 0;
+	int compWin = 0;
+	int sizeOf = 0;
 	
 	printf("Input your name here: ");
-	gets(name);
+	gets(&name);
+
+	sizeOf = strlen(name);
 
 	do {
 		intializeGrid(grid);
@@ -40,9 +47,11 @@ int main() {
 				displayGrid(grid);
 				if (counter == 1) {
 					printf("Congratulations %s, YOU ARE THE WINNER!\n", name);
+					playerWin++;
 				}
 				else {
 					printf("Computer wins!\n");
+					compWin++;
 				}
 				gameOver = 0;
 			}
@@ -60,6 +69,7 @@ int main() {
 				counter = 1;
 			}
 		}
+		scoreBoard(playerWin, compWin, &name, sizeOf);
 
 		printf("\nDo you want to play again (1 for yes, 0 for no): ");
 		scanf_s("%d", &playAgain);
@@ -197,4 +207,15 @@ int checkdraw(char grid[3][3]) {
 		}
 	}
 	return 1;
+}
+
+void scoreBoard(int playerWin, int compWin, char *name, int sizeOf) {
+
+
+	printf("\n\t\tScoreboard\t\t\n");
+	for (int i = 0; i < sizeOf; i++) {
+		printf("%c", *(name+i));
+	}
+	printf("'s Wins: %d\t\t Computer's Wins: %d\n", playerWin, compWin);
+
 }
